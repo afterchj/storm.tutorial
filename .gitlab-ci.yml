@@ -1,0 +1,18 @@
+stages:
+    - test
+    - build
+
+
+job_test:
+    stage: test
+    script:
+        - mvn clean test -P demo,MongoDbWordCounter
+
+job_build:
+    stage: build
+    script:
+        - mvn clean package -P demo,MongoDbWordCounter
+    artifacts:
+        untracked: true
+        paths:
+            - target/
